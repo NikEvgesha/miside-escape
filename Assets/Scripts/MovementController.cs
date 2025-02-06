@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour
     public Animator animator;
 
     [SerializeField] private GameObject _playerModel;
+    [SerializeField] private CharacterController _characterController;
 
     public Joystick joystick;
     public float walkSpeed;
@@ -44,7 +45,7 @@ public class MovementController : MonoBehaviour
 
         if (magnitude > 0f)
         {
-            transform.Translate(input * Time.deltaTime * walkSpeed);
+            _characterController.Move(input * Time.deltaTime * walkSpeed);
             _playerModel.transform.forward = input;
         }
         walkAnimSmooth = Mathf.Lerp(walkAnimSmooth, magnitude, 10 * Time.deltaTime);
