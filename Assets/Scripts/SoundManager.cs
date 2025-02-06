@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
     private string _soundName = "SoundVolume";
     private string _musicName = "MusicVolume";
 
-
+    
     public static SoundManager Instance { get { return _instance; } }
     public bool isSoundOn { get { return _soundON; } }
     public float SoundVolume
@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
             //VolumeChange?.Invoke(_volume);
         }
     }
-
+    
 
     public Action<float> VolumeChange;
 

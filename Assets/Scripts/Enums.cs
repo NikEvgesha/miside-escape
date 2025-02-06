@@ -7,3 +7,10 @@ public enum KeyItemType
     Green,
     Yellow
 }
+public enum EnemyState
+{
+    Run,
+    Wait,
+    FastRun,
+    Idle,
+}
