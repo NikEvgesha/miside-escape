@@ -25,10 +25,22 @@ public class Inventory : MonoBehaviour
         _inventoryUI.AddItem(item);
     }
 
-    public void RemoveItem(ItemData item)
+    public bool RemoveItem(ItemData item)
     {
-        _items.Remove(item);
-        _inventoryUI.RemoveItem(item);
+        bool res = _items.Remove(item);
+        if (res) 
+        {
+            _inventoryUI.RemoveItem(item);
+        }
+        return res;
     }
+
+
+    public bool Contains(ItemData item)
+    {
+        return _items.Contains(item);
+    }
+
+
 
 }

@@ -22,7 +22,8 @@ public class InventoryUI : MonoBehaviour
 
     public void RemoveItem(ItemData data) {
         if (_items.ContainsKey(data)) {
-            Destroy(_items[data]);
+            Debug.Log("UI delete item");
+            Destroy(_items[data].gameObject);
             _items.Remove(data);
         }
     }

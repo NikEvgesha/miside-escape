@@ -1,18 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class InputListener : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private static InputListener _instance;
+    
+    private KeyCode _interactionKey = KeyCode.E;
+
+
+    public Action InteractionKeyPressed;
+
+    public static InputListener Instance { 
+        get { return _instance; }
+        private set { _instance = value; }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        Instance = this;
     }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(_interactionKey)) {
+            InteractionKeyPressed?.Invoke();
+        }
+    }
+
+
+    public void OnInterationButtonPressed() {
+        InteractionKeyPressed?.Invoke();
+    }
+
 }

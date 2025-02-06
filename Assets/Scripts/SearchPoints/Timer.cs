@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
         if (!_inProgress) {
             _time = time;
             _currentTime = time;
+            _progressBarImg.gameObject.SetActive(true);
             _progressBarImg.fillAmount = 0;
             _inProgress = true;
             checker.OnTrigger += StopTimer;
@@ -42,6 +43,8 @@ public class Timer : MonoBehaviour
             _progressBarImg.fillAmount = 1f - _currentTime / _time;
             yield return null;
         }
+        _inProgress = false;
+        _progressBarImg.gameObject.SetActive(false);
         TimerFinish?.Invoke();
     }
 

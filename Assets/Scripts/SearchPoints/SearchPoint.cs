@@ -15,7 +15,6 @@ public class SearchPoint : MonoBehaviour
 
     public ItemData _item = null;
     private bool _playerInTrigger;
-    private KeyCode _interactionKey = KeyCode.E;
 
 
     public List<KeyItemType> GetAvailableKeyTypes() 
@@ -32,30 +31,52 @@ public class SearchPoint : MonoBehaviour
     {
         entryChecker.OnTrigger += OnPlayerEnter;
         _timer.TimerFinish += OnSearchTimerFinish;
+        
     }
 
     private void OnDisable()
     {
         entryChecker.OnTrigger -= OnPlayerEnter;
         _timer.TimerFinish -= OnSearchTimerFinish;
+        InputListener.Instance.InteractionKeyPressed -= OnInteractionKeyPressed;
     }
 
 
-    private void Update()
+    /*    private void Update()
+        {
+            if (_playerInTrigger) {
+                if (InputListener.Instance.InteractionKeyPressed)
+                {
+                    Debug.Log("E pressed in trigger area");
+                    StartSearch();
+                }
+
+            }
+        }*/
+
+    private void Start()
     {
-        if (_playerInTrigger && SimpleInput.GetKeyDown(_interactionKey)) {
-            StartSearch();
-        }
+        InputListener.Instance.InteractionKeyPressed += OnInteractionKeyPressed;
+    }
+
+
+    private void OnInteractionKeyPressed() {
+        if (!_playerInTrigger) return;
+
+        StartSearch();
+
     }
 
     private void OnPlayerEnter(bool inTrigger)
     {
         _playerInTrigger = inTrigger;
         _hint.EnableInteractionHint(inTrigger);
+        TouchUI.Instance.ToggleInterationButton(inTrigger);
     }
 
 
     private void StartSearch() {
+        Debug.Log("Search");
         _hint.EnableInteractionHint(false);
         _timer.StartTimer(_searchTime, entryChecker);
     }
@@ -63,7 +84,7 @@ public class SearchPoint : MonoBehaviour
 
     private void OnSearchTimerFinish() {
         entryChecker.gameObject.SetActive(false);
-
+        _playerInTrigger = false;
         if (_item != null)
         {
             Inventory.Instance.AddItem(_item);
