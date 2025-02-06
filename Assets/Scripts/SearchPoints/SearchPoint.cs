@@ -92,6 +92,7 @@ public class SearchPoint : MonoBehaviour
         else {
             _hint.ShowEmptyHint();
         }
+        TouchUI.Instance.ToggleInterationButton(false);
         //Destroy(gameObject);
     }
 

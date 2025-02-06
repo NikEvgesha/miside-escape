@@ -14,6 +14,7 @@ public class Door : MonoBehaviour
     [SerializeField] private DoorUI _doorUI;
 
     [SerializeField] private ItemData _requiredKeyData;
+    [SerializeField] private bool _isFinalDoor;
     //[SerializeField] private KeyItemType _requiredKey;
 
     private bool _playerInTrigger;
@@ -21,13 +22,13 @@ public class Door : MonoBehaviour
     private void OnEnable()
     {
         entryChecker.OnTrigger += OnPlayerEnter;
-        _timer.TimerFinish += OnSearchTimerFinish;
+        _timer.TimerFinish += OnOpenTimerFinish;
     }
 
     private void OnDisable()
     {
         entryChecker.OnTrigger -= OnPlayerEnter;
-        _timer.TimerFinish -= OnSearchTimerFinish;
+        _timer.TimerFinish -= OnOpenTimerFinish;
         InputListener.Instance.InteractionKeyPressed -= OnInteractionKeyPressed;
     }
 
@@ -86,12 +87,15 @@ public class Door : MonoBehaviour
     }
 
 
-    private void OnSearchTimerFinish()
+    private void OnOpenTimerFinish()
     {
         _doorUI.ToggleImageEnable(false);
         entryChecker.gameObject.SetActive(false);
         _playerInTrigger = false;
         _doorAnimation.Play();
+        if (_isFinalDoor) {
+            GameManager.Instance.onGameWin();
+        }
     }
 
 }

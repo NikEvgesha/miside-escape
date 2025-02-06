@@ -148,6 +148,7 @@ MonoBehaviour:
   _openTime: 2
   _doorUI: {fileID: 3498569397679565990}
   _requiredKeyData: {fileID: 11400000, guid: 88a7dfb300448ae4d9a4b0ebd3dccc70, type: 2}
+  _isFinalDoor: 0
 --- !u!1 &8551006678085113190
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,8 +257,8 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9157357675882640522}
   - {fileID: 2911180174638247350}
+  - {fileID: 9157357675882640522}
   m_Father: {fileID: 7410703116929545891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
