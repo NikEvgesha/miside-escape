@@ -46,7 +46,8 @@ public class MovementController : MonoBehaviour
         if (magnitude > 0f)
         {
             _characterController.Move(input * Time.deltaTime * walkSpeed);
-            _playerModel.transform.forward = input;
+            _playerModel.transform.forward = input; //input; //new Vector3(input.x, _playerModel.transform.position.y, input.z) ;
+            _characterController.transform.position = new Vector3(_playerModel.transform.position.x, 0, _playerModel.transform.position.z);
         }
         walkAnimSmooth = Mathf.Lerp(walkAnimSmooth, magnitude, 10 * Time.deltaTime);
         animator.SetFloat("Movement", walkAnimSmooth);

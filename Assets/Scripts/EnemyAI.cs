@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string _animationRun = "Run";
     [SerializeField] private string _animationWait = "Wait";
     [SerializeField] private string _animationFastRun = "FustRun";
+    [SerializeField] private Door _door;
 
 
     private EnemyState _enemyState = EnemyState.Idle;

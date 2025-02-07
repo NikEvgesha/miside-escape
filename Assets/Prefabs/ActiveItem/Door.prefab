@@ -600,6 +600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door-Single-2
       objectReference: {fileID: 0}
+    - target: {fileID: 139961404500358235, guid: 24ad7474df3a68b468700a4a9e2de361, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2972002953046317742, guid: 24ad7474df3a68b468700a4a9e2de361, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
