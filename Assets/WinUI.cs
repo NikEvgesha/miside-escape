@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +6,8 @@ public class WinUI : MonoBehaviour
 {
     [SerializeField] private Text _roundTime;
     [SerializeField] private GameObject _winPanel;
+    [SerializeField] private ScoreUISlot _scorePrefab;
+    [SerializeField] private Transform _playerScoreParent;
 
 
     private void Start()
@@ -16,6 +18,7 @@ public class WinUI : MonoBehaviour
     private void OpenWinPanel(float time) {
         _winPanel.SetActive(true);
         SetTime(time);
+        SetScores();
 
     }
 
@@ -28,5 +31,17 @@ public class WinUI : MonoBehaviour
     public void OnRestartButtonPressed() {
         Debug.Log("Restart");
         GameManager.Instance.OnGameRestart();
+    }
+
+    public void SetScores() {
+        List<int> scores = SaveManager.Instance.GetPlayerScores();
+            while (_playerScoreParent.childCount > 0)
+            {
+                DestroyImmediate(_playerScoreParent.GetChild(0).gameObject);
+            }
+        foreach (int score in scores) {
+            var slot = Instantiate(_scorePrefab, _playerScoreParent);
+            slot.SetData(score);
+        }
     }
 }

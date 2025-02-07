@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void OnGameWin() {
-        Debug.Log("WIN");
         _roundTime = Time.time - _roundTimeStart;
+        SaveManager.Instance.SaveScore((int)_roundTime);
 
         GameWin?.Invoke(_roundTime);
     }

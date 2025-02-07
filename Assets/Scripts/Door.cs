@@ -89,6 +89,7 @@ public class Door : MonoBehaviour
         _playerInTrigger = false;
         _doorAnimator.SetTrigger("Open");
         _doorAnimator.ResetTrigger("Reset");
+        TouchUI.Instance.ToggleInterationButton(false);
         if (_isFinalDoor) {
             GameManager.Instance.OnGameWin();
         }

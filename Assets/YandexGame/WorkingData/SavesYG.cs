@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace YG
 {
     [System.Serializable]
@@ -17,6 +19,7 @@ namespace YG
         public bool[] openLevels = new bool[3];
 
         // Ваши сохранения
+        public int[] scores;
 
         // ...
 
