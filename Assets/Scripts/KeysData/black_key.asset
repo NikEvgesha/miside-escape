@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: black_key
   m_EditorClassIdentifier: 
   _img: {fileID: 21300000, guid: 19494835125d51f4caa3d54ac7adf65b, type: 3}
-  _type: 4
+  _type: 0

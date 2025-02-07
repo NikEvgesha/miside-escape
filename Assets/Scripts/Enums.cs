@@ -6,7 +6,8 @@ public enum KeyItemType
     Red,
     Green,
     Yellow,
-    Purple
+    Purple,
+    Orange
 }
 public enum EnemyState
 {
