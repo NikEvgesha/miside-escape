@@ -1,5 +1,5 @@
 {
-    "idSave": 18,
+    "idSave": 23,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -13,8 +13,8 @@
     "scores": [
         9,
         9,
+        13,
         20,
-        20,
-        21
+        20
     ]
 }

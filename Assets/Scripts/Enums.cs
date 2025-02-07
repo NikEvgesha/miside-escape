@@ -1,11 +1,12 @@
 
 public enum KeyItemType
 {
-    Orange,
+    Black,
     Blue,
     Red,
     Green,
-    Yellow
+    Yellow,
+    Purple
 }
 public enum EnemyState
 {

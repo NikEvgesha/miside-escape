@@ -13,7 +13,7 @@ public class SearchPointManager : MonoBehaviour
     private HashSet<SearchPoint> _selectedPlaces;
     private void Start()
     {
-        GameManager.Instance.GameRestart += OnGameRestart;
+        GameManager.Instance.Reset += OnGameRestart;
         _searchPoints = GetComponentsInChildren<SearchPoint>().ToList();
         _availablePlaces = new Dictionary<KeyItemType, List<SearchPoint>>();
         _selectedPlaces = new HashSet<SearchPoint>();
@@ -25,7 +25,7 @@ public class SearchPointManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.GameRestart -= OnGameRestart;
+        GameManager.Instance.Reset -= OnGameRestart;
     }
 
 

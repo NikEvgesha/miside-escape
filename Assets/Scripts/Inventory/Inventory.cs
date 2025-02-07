@@ -19,12 +19,12 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         _items = new List<ItemData>();
-        GameManager.Instance.GameRestart += ResetItems;
+        GameManager.Instance.Reset += ResetItems;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.GameRestart -= ResetItems;
+        GameManager.Instance.Reset -= ResetItems;
     }
 
     private void ResetItems() {
