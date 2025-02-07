@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class WinUI : MonoBehaviour
 {
     [SerializeField] private Text _roundTime;
     [SerializeField] private GameObject _winPanel;
-    [SerializeField] private ScoreUISlot _scorePrefab;
+    //[SerializeField] private ScoreUISlot _scorePrefab;
+    [SerializeField] private LBPlayerDataYG _lbSlotPrefab;
+    [SerializeField] private LeaderboardYG _lbGlobal;
     [SerializeField] private Transform _playerScoreParent;
 
 
@@ -39,9 +42,15 @@ public class WinUI : MonoBehaviour
             {
                 DestroyImmediate(_playerScoreParent.GetChild(0).gameObject);
             }
+        int i = 0;
         foreach (int score in scores) {
-            var slot = Instantiate(_scorePrefab, _playerScoreParent);
-            slot.SetData(score);
+            var slot = Instantiate(_lbSlotPrefab, _playerScoreParent);
+            slot.data.thisPlayer = true;
+            slot.data.score = string.Format("{0:00}:{1:00}", score/60, score%60);
+            slot.data.photoSprite = _lbGlobal.isHiddenPlayerPhoto;
+            slot.data.rank = i.ToString();
+            i++;
+            slot.UpdateEntries();
         }
     }
 }

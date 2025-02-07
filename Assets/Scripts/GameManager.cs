@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private EnemyAI _enemy;
+    [SerializeField] private bool _testMode;
     private Vector3 _startPlayerPosition;
     private Vector3 _startEnemyPosition;
 
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _roundTimeStart = Time.time;
+        _startPlayerPosition = _player.transform.position;
+        _startEnemyPosition = _enemy.transform.position;
     }
 
     public void OnGameWin() {
@@ -37,7 +40,12 @@ public class GameManager : MonoBehaviour
 
     public void OnGameLose()
     {
-        GameLose?.Invoke();
+        Debug.Log("LOSE");
+        if (!_testMode)
+        {
+            GameLose?.Invoke();
+        }
+        
     }
 
 
@@ -45,9 +53,9 @@ public class GameManager : MonoBehaviour
     {
         GameRestart?.Invoke();
         _roundTimeStart = Time.time;
-        _player.transform.position = _startPlayerPosition;
-        _enemy.gameObject.transform.position = _startEnemyPosition;
-        // reset enemy ?
+        _player.transform.position = _startPlayerPosition; // перенести в player
+
+        _enemy.gameObject.transform.position = _startEnemyPosition; // перенести в enemy + ресет задержки
     }
 
 
