@@ -7,7 +7,9 @@ public class Inventory : MonoBehaviour
 
     private List<ItemData> _items;
     private static Inventory _instance;
+
     public static Inventory Instance { get => _instance; private set => _instance = value; }
+
 
     private void Awake()
     {
@@ -17,6 +19,17 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         _items = new List<ItemData>();
+        GameManager.Instance.GameRestart += ResetItems;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.GameRestart -= ResetItems;
+    }
+
+    private void ResetItems() {
+        _items.Clear();
+        _inventoryUI.ResetItems();
     }
 
 

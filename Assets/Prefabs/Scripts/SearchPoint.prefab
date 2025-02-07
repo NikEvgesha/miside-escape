@@ -262,6 +262,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3694619200042908746}
     m_Modifications:
+    - target: {fileID: 2124753256807584248, guid: 0932da72ac3320c4a8f14f9bf21e44f3, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 02da20d90b2ed2641a07b024ad8fa9a5, type: 3}
+    - target: {fileID: 2124753256807584248, guid: 0932da72ac3320c4a8f14f9bf21e44f3, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3493454974110500619, guid: 0932da72ac3320c4a8f14f9bf21e44f3, type: 3}
       propertyPath: m_Name
       value: InterationCanvas

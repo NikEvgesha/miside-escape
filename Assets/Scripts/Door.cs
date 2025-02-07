@@ -6,7 +6,7 @@ public class Door : MonoBehaviour
 {
     /*    [SerializeField] private Animator _doorAnimator;
         [SerializeField] private AnimationClip _doorAnimationClip;*/
-    [SerializeField] private Animation _doorAnimation;
+    [SerializeField] private Animator _doorAnimator;
     [SerializeField] private TriggerEnterChecker entryChecker;
     [SerializeField] private InteractionHint _hint;
     [SerializeField] private Timer _timer;
@@ -30,29 +30,24 @@ public class Door : MonoBehaviour
         entryChecker.OnTrigger -= OnPlayerEnter;
         _timer.TimerFinish -= OnOpenTimerFinish;
         InputListener.Instance.InteractionKeyPressed -= OnInteractionKeyPressed;
+        GameManager.Instance.GameRestart -= ResetDoor;
     }
 
     private void Start()
     {
         _doorUI.SetKeyImage(_requiredKeyData.Img);
         InputListener.Instance.InteractionKeyPressed += OnInteractionKeyPressed;
+        GameManager.Instance.GameRestart += ResetDoor;
     }
 
 
-/*    private void Update()
-    {
-        if (_playerInTrigger && InputListener.Instance.InteractionKeyPressed)
-        {
-            if (CheckKey())
-            {
-                StartOpen();
-            }
-            else 
-            {
-                _doorUI.ShowRequiredItemHint();
-            }
-        }
-    }*/
+    private void ResetDoor() {
+        _doorUI.ToggleImage(true);
+        entryChecker.gameObject.SetActive(true);
+        _doorAnimator.SetTrigger("Reset");
+        _doorAnimator.ResetTrigger("Open");
+    }
+
 
     private void OnInteractionKeyPressed() {
         if (!_playerInTrigger) return;
@@ -89,12 +84,13 @@ public class Door : MonoBehaviour
 
     private void OnOpenTimerFinish()
     {
-        _doorUI.ToggleImageEnable(false);
+        _doorUI.ToggleImage(false);
         entryChecker.gameObject.SetActive(false);
         _playerInTrigger = false;
-        _doorAnimation.Play();
+        _doorAnimator.SetTrigger("Open");
+        _doorAnimator.ResetTrigger("Reset");
         if (_isFinalDoor) {
-            GameManager.Instance.onGameWin();
+            GameManager.Instance.OnGameWin();
         }
     }
 

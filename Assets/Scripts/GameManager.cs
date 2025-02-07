@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
-    public Action<float> GameWin;
-    public Action GameLose;
-    public Action GameRestart;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private EnemyAI _enemy;
+    private Vector3 _startPlayerPosition;
+    private Vector3 _startEnemyPosition;
 
     private float _roundTimeStart;
     private float _roundTime;
     private static GameManager _instance;
+
+    public Action<float> GameWin;
+    public Action GameLose;
+    public Action GameRestart;
     public static GameManager Instance { get { return _instance; } private set { } }
 
     private void Awake()
@@ -23,7 +27,7 @@ public class GameManager : MonoBehaviour
         _roundTimeStart = Time.time;
     }
 
-    public void onGameWin() {
+    public void OnGameWin() {
         Debug.Log("WIN");
         _roundTime = Time.time - _roundTimeStart;
 
@@ -31,9 +35,19 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void onGameLose()
+    public void OnGameLose()
     {
         GameLose?.Invoke();
+    }
+
+
+    public void OnGameRestart()
+    {
+        GameRestart?.Invoke();
+        _roundTimeStart = Time.time;
+        _player.transform.position = _startPlayerPosition;
+        _enemy.gameObject.transform.position = _startEnemyPosition;
+        // reset enemy ?
     }
 
 

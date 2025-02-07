@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab69b77c8d94db9448935bed432671e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorAnimation: {fileID: 552147878191277238}
+  _doorAnimator: {fileID: 1017979317060977541}
   entryChecker: {fileID: 5324630332317066370}
   _hint: {fileID: 2472881661397327895}
   _timer: {fileID: 1472487518073536474}
@@ -531,9 +531,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a32e9995f50889947b8e7a3d65fd3560, type: 3}
---- !u!111 &552147878191277238 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 3184962531047055029, guid: a32e9995f50889947b8e7a3d65fd3560, type: 3}
+--- !u!95 &1017979317060977541 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2718568709126093190, guid: a32e9995f50889947b8e7a3d65fd3560, type: 3}
   m_PrefabInstance: {fileID: 3142066809938557443}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3142066809938157699 stripped

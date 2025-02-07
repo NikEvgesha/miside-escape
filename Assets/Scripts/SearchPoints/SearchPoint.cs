@@ -16,6 +16,7 @@ public class SearchPoint : MonoBehaviour
     public ItemData _item = null;
     private bool _playerInTrigger;
 
+    /*-----public----*/
 
     public List<KeyItemType> GetAvailableKeyTypes() 
     {
@@ -26,6 +27,15 @@ public class SearchPoint : MonoBehaviour
         _item = data;
     }
 
+
+    public void ResetPoint()
+    {
+        _item = null;
+        entryChecker.gameObject.SetActive(true);
+    }
+
+
+    /*-----private----*/
 
     private void OnEnable()
     {
@@ -93,7 +103,7 @@ public class SearchPoint : MonoBehaviour
             _hint.ShowEmptyHint();
         }
         TouchUI.Instance.ToggleInterationButton(false);
-        //Destroy(gameObject);
     }
+
 
 }

@@ -6,11 +6,7 @@ public class InteractionHint : MonoBehaviour
 {
     [SerializeField] private GameObject _hintObject;
     [SerializeField] private Animation _emptyHint;
-    [SerializeField] private Image _reqiredItemImage;
 
-    public void SetRequiredItemImage(Sprite sprite) {
-        _reqiredItemImage.sprite = sprite;
-    }
 
     public void EnableInteractionHint(bool enable) { 
         _hintObject.SetActive(enable);
@@ -24,7 +20,4 @@ public class InteractionHint : MonoBehaviour
         _emptyHint.Play();
     }
 
-    public void ToggleImageHint(bool enable) {
-        _reqiredItemImage.gameObject.SetActive(enable);
-    }
 }

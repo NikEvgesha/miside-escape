@@ -11,17 +11,26 @@ public class SearchPointManager : MonoBehaviour
     private Dictionary<KeyItemType, List<SearchPoint>> _availablePlaces;
 
     private HashSet<SearchPoint> _selectedPlaces;
-    void Start()
+    private void Start()
     {
+        GameManager.Instance.GameRestart += OnGameRestart;
         _searchPoints = GetComponentsInChildren<SearchPoint>().ToList();
         _availablePlaces = new Dictionary<KeyItemType, List<SearchPoint>>();
         _selectedPlaces = new HashSet<SearchPoint>();
 
+        CollectDataFromPoints();
         PutItems();
         
     }
 
-    private void PutItems() {
+    private void OnDisable()
+    {
+        GameManager.Instance.GameRestart -= OnGameRestart;
+    }
+
+
+    private void CollectDataFromPoints()
+    {
         foreach (var keyData in _keyDatas)
         {
             _availablePlaces.Add(keyData.Type, new List<SearchPoint>());
@@ -37,7 +46,9 @@ public class SearchPointManager : MonoBehaviour
         }
 
         _keyDatas.Sort((e1, e2) => _availablePlaces[e1.Type].Count.CompareTo(_availablePlaces[e2.Type].Count));
+    }
 
+    private void PutItems() {
         foreach (var keyData in _keyDatas)
         {
             KeyItemType keyType = keyData.Type;
@@ -62,5 +73,13 @@ public class SearchPointManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnGameRestart() {
+        _selectedPlaces.Clear();
+        foreach (var point in _searchPoints) {
+            point.ResetPoint();
+        }
+        PutItems();
     }
 }

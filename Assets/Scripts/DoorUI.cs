@@ -10,7 +10,7 @@ public class DoorUI : MonoBehaviour
         _requiredItemImage.sprite = img;
     }
 
-    public void ToggleImageEnable(bool enable)
+    public void ToggleImage(bool enable)
     {
         _requiredItemImage.gameObject.SetActive(enable);
     }

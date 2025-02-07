@@ -28,4 +28,12 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void ResetItems()
+    {
+        foreach (var item in _items.Values) {
+            Destroy(item.gameObject);
+        }
+        _items.Clear();
+    }
+
 }

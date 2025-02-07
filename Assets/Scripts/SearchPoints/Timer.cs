@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour
             yield return null;
         }
         _inProgress = false;
-        _progressBarImg.gameObject.SetActive(false);
+        //_progressBarImg.gameObject.SetActive(false);
         TimerFinish?.Invoke();
     }
 

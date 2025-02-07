@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,10 +22,11 @@ public class WinUI : MonoBehaviour
     private void SetTime(float time) {
         int minutes = (int)(time / 60);
         int seconds = (int)(time % 60);
-        _roundTime.text = minutes + ":" + seconds;
+        _roundTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void OnRestartButtonPressed() {
         Debug.Log("Restart");
+        GameManager.Instance.OnGameRestart();
     }
 }
