@@ -1,0 +1,2 @@
+Build path: E:/GitFork/Bilds/MiSide/MiSide_0002
+Build number: 2
