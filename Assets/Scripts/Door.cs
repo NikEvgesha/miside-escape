@@ -81,7 +81,6 @@ public class Door : MonoBehaviour
 
     private void StartOpen()
     {
-        Inventory.Instance.RemoveItem(_requiredKeyData);
         _hint.EnableInteractionHint(false);
         _timer.StartTimer(_openTime, entryChecker);
     }
@@ -89,6 +88,7 @@ public class Door : MonoBehaviour
 
     private void OnOpenTimerFinish()
     {
+        Inventory.Instance.RemoveItem(_requiredKeyData);
         _doorUI.ToggleImage(false);
         entryChecker.gameObject.SetActive(false);
         _playerInTrigger = false;

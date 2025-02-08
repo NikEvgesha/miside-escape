@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,15 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void OnGameRestart()
     {
-        //Reset?.Invoke();
-        GameRestart?.Invoke();
-        _roundTimeStart = Time.time;
-        _player.transform.position = _startPlayerPosition; // перенести в player
-
-        _enemy.gameObject.transform.position = _startEnemyPosition; // перенести в enemy + ресет задержки
-
-        _player.gameObject.SetActive(true);
-        _enemy.gameObject.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
