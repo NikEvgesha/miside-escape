@@ -42,7 +42,7 @@ public class WinUI : MonoBehaviour
             {
                 DestroyImmediate(_playerScoreParent.GetChild(0).gameObject);
             }
-        int i = 0;
+        int i = 1;
         foreach (int score in scores) {
             var slot = Instantiate(_lbSlotPrefab, _playerScoreParent);
             slot.data.thisPlayer = true;

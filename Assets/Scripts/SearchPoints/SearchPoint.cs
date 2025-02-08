@@ -51,19 +51,6 @@ public class SearchPoint : MonoBehaviour
         InputListener.Instance.InteractionKeyPressed -= OnInteractionKeyPressed;
     }
 
-
-    /*    private void Update()
-        {
-            if (_playerInTrigger) {
-                if (InputListener.Instance.InteractionKeyPressed)
-                {
-                    Debug.Log("E pressed in trigger area");
-                    StartSearch();
-                }
-
-            }
-        }*/
-
     private void Start()
     {
         InputListener.Instance.InteractionKeyPressed += OnInteractionKeyPressed;
@@ -86,7 +73,6 @@ public class SearchPoint : MonoBehaviour
 
 
     private void StartSearch() {
-        Debug.Log("Search");
         _hint.EnableInteractionKeyHint(false);
         _timer.StartTimer(_searchTime, entryChecker);
     }
@@ -94,6 +80,8 @@ public class SearchPoint : MonoBehaviour
 
     private void OnSearchTimerFinish() {
         entryChecker.gameObject.SetActive(false);
+        _hint.EnableInteractionKeyHint(false);
+        TouchUI.Instance.ToggleInterationButton(false);
         _playerInTrigger = false;
         if (_item != null)
         {
@@ -102,7 +90,7 @@ public class SearchPoint : MonoBehaviour
         else {
             _hint.ShowEmptyHint();
         }
-        TouchUI.Instance.ToggleInterationButton(false);
+        
     }
 
 
