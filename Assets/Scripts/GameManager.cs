@@ -35,24 +35,21 @@ public class GameManager : MonoBehaviour
     public void OnGameWin() {
         _roundTime = Time.time - _roundTimeStart;
         SaveManager.Instance.SaveScore((int)_roundTime);
-        Reset?.Invoke();
-        GameWin?.Invoke(_roundTime);
         _player.gameObject.SetActive(false);
         _enemy.gameObject.SetActive(false);
+        Reset?.Invoke();
+        GameWin?.Invoke(_roundTime);
     }
 
 
     public void OnGameLose()
     {
-        Debug.Log("LOSE");
-
         if (!_testMode)
         {
             Reset?.Invoke();
             GameLose?.Invoke();
             _player.gameObject.SetActive(false);
             _enemy.gameObject.SetActive(false);
-
         }
         
     }

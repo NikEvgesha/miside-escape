@@ -43,13 +43,14 @@ public class Door : MonoBehaviour
 
 
     private void ResetDoor() {
-        _doorUI.ToggleImage(true);
-        entryChecker.gameObject.SetActive(true);
-        foreach (var animator in _doorAnimators)
+        //_doorUI.ToggleImage(true);
+        _timer.gameObject.SetActive(false);
+        entryChecker.gameObject.SetActive(false);
+/*        foreach (var animator in _doorAnimators)
         {
             animator.SetTrigger("Reset");
             animator.ResetTrigger("Open");
-        }
+        }*/
             
     }
 
@@ -66,7 +67,8 @@ public class Door : MonoBehaviour
         _playerInTrigger = inTrigger;
         if (CheckKey() || !inTrigger)
         {
-            _hint.EnableInteractionHint(inTrigger);
+            _hint.EnableInteractionAreaHint(inTrigger);
+            _hint.EnableInteractionKeyHint(inTrigger);
             TouchUI.Instance.ToggleInterationButton(inTrigger);
         } else if (inTrigger)
         {
@@ -81,7 +83,8 @@ public class Door : MonoBehaviour
 
     private void StartOpen()
     {
-        _hint.EnableInteractionHint(false);
+        _hint.EnableInteractionKeyHint(false);
+        _hint.EnableInteractionAreaHint(true);
         _timer.StartTimer(_openTime, entryChecker);
     }
 

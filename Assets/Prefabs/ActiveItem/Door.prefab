@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: _progressBarImg
       value: 
       objectReference: {fileID: 592081590392178905}
+    - target: {fileID: 1086593979719746703, guid: 025b2054987163849af1fcf700e4e415, type: 3}
+      propertyPath: _interactionHint
+      value: 
+      objectReference: {fileID: 2472881661397327895}
     - target: {fileID: 7474556376018394486, guid: 025b2054987163849af1fcf700e4e415, type: 3}
       propertyPath: m_Name
       value: SearchTimer
@@ -483,6 +487,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7410703116929545891}
     m_Modifications:
+    - target: {fileID: 1039484541811863173, guid: 0932da72ac3320c4a8f14f9bf21e44f3, type: 3}
+      propertyPath: _areaObject
+      value: 
+      objectReference: {fileID: 592081590392178905}
     - target: {fileID: 3493454974110500619, guid: 0932da72ac3320c4a8f14f9bf21e44f3, type: 3}
       propertyPath: m_Name
       value: InterationHints
@@ -762,6 +770,10 @@ PrefabInstance:
     - target: {fileID: 3823343361893000841, guid: 9b2b0ae89046a1e40aed29fc8e3f04f8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653786971351135613, guid: 9b2b0ae89046a1e40aed29fc8e3f04f8, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

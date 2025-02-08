@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private Image _progressBarImg;
+    [SerializeField] private InteractionHint _interactionHint;
 
     public Action TimerFinish;
 
@@ -20,8 +20,9 @@ public class Timer : MonoBehaviour
         if (!_inProgress) {
             _time = time;
             _currentTime = time;
-            _progressBarImg.gameObject.SetActive(true);
-            _progressBarImg.fillAmount = 0;
+            _interactionHint.EnableInteractionAreaHint(true);
+/*            _progressBarImg.gameObject.SetActive(true);
+            _progressBarImg.fillAmount = 0;*/
             _inProgress = true;
             checker.OnTrigger += StopTimer;
             StartCoroutine(Run());
@@ -31,7 +32,7 @@ public class Timer : MonoBehaviour
 
     private void StopTimer(bool inTrigger) {
         if (_inProgress && !inTrigger) {
-            _progressBarImg.fillAmount = 1;
+            _interactionHint.SetProgress(1);
             _inProgress = false;
             StopAllCoroutines();
         }
@@ -40,7 +41,7 @@ public class Timer : MonoBehaviour
     private IEnumerator Run() {
         while (_currentTime > 0) {
             _currentTime -= Time.deltaTime;
-            _progressBarImg.fillAmount = 1f - _currentTime / _time;
+            _interactionHint.SetProgress(1f - _currentTime / _time);
             yield return null;
         }
         _inProgress = false;

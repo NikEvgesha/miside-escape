@@ -80,14 +80,14 @@ public class SearchPoint : MonoBehaviour
     private void OnPlayerEnter(bool inTrigger)
     {
         _playerInTrigger = inTrigger;
-        _hint.EnableInteractionHint(inTrigger);
+        _hint.EnableInteractionKeyHint(inTrigger);
         TouchUI.Instance.ToggleInterationButton(inTrigger);
     }
 
 
     private void StartSearch() {
         Debug.Log("Search");
-        _hint.EnableInteractionHint(false);
+        _hint.EnableInteractionKeyHint(false);
         _timer.StartTimer(_searchTime, entryChecker);
     }
 
