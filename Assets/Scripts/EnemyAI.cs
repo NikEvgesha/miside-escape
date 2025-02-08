@@ -27,14 +27,13 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        _door.DoorOpen += StartSeek;
         if (_animator is null) { _animator =  GetComponentInChildren<Animator>(); }
         _player = FindAnyObjectByType<MovementController>().gameObject.transform;
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _baseSpeed;  // Начальная скорость
         _agent.isStopped = true;
-        _agent.SetDestination(_player.position);
         StartCoroutine(CheckState());
-        StartCoroutine(Test());
     }
 
     IEnumerator CheckState()
@@ -47,7 +46,7 @@ public class EnemyAI : MonoBehaviour
                     if (_isStart)
                     {
                         _enemyState = EnemyState.Run;
-                        _animator.SetTrigger(_animationRun);
+                        //_animator.SetTrigger(_animationRun);
                         _agent.isStopped = false; 
                         _agent.speed = _baseSpeed; 
                     }
@@ -66,7 +65,7 @@ public class EnemyAI : MonoBehaviour
                     _timer += _aiFPS;
                     if (_timer >= _stopTime)
                     {
-                        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.y);
+                        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
                         _enemyState = EnemyState.FastRun;
                         _animator.SetTrigger(_animationFastRun);
                         _agent.isStopped = false;
@@ -89,15 +88,9 @@ public class EnemyAI : MonoBehaviour
             yield return new WaitForSeconds(_aiFPS);
         }
     }
-    public void StartSeek()
+    private void StartSeek()
     {
         _isStart = true;
-    }
-    IEnumerator Test()
-    {
-
-        yield return new WaitForSeconds(10);
-
-        StartSeek();
+        _agent.SetDestination(_player.position);
     }
 }

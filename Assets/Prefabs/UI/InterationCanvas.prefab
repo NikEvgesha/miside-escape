@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5172533099303348958}
   - component: {fileID: 2124753256807584248}
   - component: {fileID: 1230769679438115222}
+  - component: {fileID: 5201163173283107625}
   m_Layer: 0
   m_Name: EmptyText
   m_TagString: Untagged
@@ -96,6 +97,21 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5201163173283107625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849497620987874652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4151974eac4ae4ba8ed7bcb9cf28ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationData: {fileID: 11400000, guid: 247e385684679874b849f4c64cf8b6fc, type: 2}
+  selectedKey: Empty
+  currentLanguage: Ru
 --- !u!1 &3493454974110500619
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hintObject: {fileID: 8135976285009145844}
   _emptyHint: {fileID: 1230769679438115222}
-  _reqiredItemImage: {fileID: 0}
 --- !u!1 &8135976285009145844
 GameObject:
   m_ObjectHideFlags: 0

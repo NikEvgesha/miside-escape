@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class Door : MonoBehaviour
@@ -16,6 +16,8 @@ public class Door : MonoBehaviour
 
     [SerializeField] private ItemData _requiredKeyData;
     [SerializeField] private bool _isFinalDoor;
+
+    public Action DoorOpen;
     //[SerializeField] private KeyItemType _requiredKey;
 
     private bool _playerInTrigger;
@@ -104,6 +106,7 @@ public class Door : MonoBehaviour
         if (_isFinalDoor) {
             GameManager.Instance.OnGameWin();
         }
+        DoorOpen?.Invoke();
     }
 
 }
