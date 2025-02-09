@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
+
     [SerializeField] private Transform _player;   // —сылка на игрока
     [SerializeField] private float _baseSpeed = 3.5f;   
     [SerializeField] private float _boostSpeed = 6f;    
@@ -18,11 +20,21 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string _animationFastRun = "FustRun";
     [SerializeField] private Door _door;
 
-
+    private static EnemyAI _instance;
     private EnemyState _enemyState = EnemyState.Idle;
     private NavMeshAgent _agent;
     private bool _isStart = false;
     [SerializeField] private float _timer = 0f;
+
+    public Action SawPrepare;
+    public Action AttackStart;
+    public Action AttackEnd;
+    public static EnemyAI Instance {  get { return _instance; } }
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
 
     void Start()
@@ -59,6 +71,7 @@ public class EnemyAI : MonoBehaviour
                         _animator.SetTrigger(_animationWait);
                         _agent.isStopped = true;
                         _timer = 0;
+                        SawPrepare?.Invoke();
                     }
                     break;
                 case EnemyState.Wait:
@@ -71,6 +84,7 @@ public class EnemyAI : MonoBehaviour
                         _agent.isStopped = false;
                         _agent.speed = _boostSpeed;
                         _timer = 0;
+                        AttackStart?.Invoke();
                     }
                     break;
                 case EnemyState.FastRun:
@@ -81,6 +95,7 @@ public class EnemyAI : MonoBehaviour
                         _animator.SetTrigger(_animationRun);
                         _agent.speed = _baseSpeed;
                         _timer = 0;
+                        AttackEnd?.Invoke();
                     }
                     break;
             }
