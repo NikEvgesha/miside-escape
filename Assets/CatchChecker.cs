@@ -4,7 +4,7 @@ public class CatchChecker : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<EnemyAI>())
+        if (GameManager.Instance.GameInProgress && other.gameObject.GetComponent<EnemyAI>())
         {
             GameManager.Instance.OnGameLose();
         }

@@ -93,21 +93,26 @@ public class Door : MonoBehaviour
 
     private void OnOpenTimerFinish()
     {
-        Inventory.Instance.RemoveItem(_requiredKeyData);
-        _hint.EnableInteractionKeyHint(false);
-        _doorUI.ToggleImage(false);
-        entryChecker.gameObject.SetActive(false);
-        _playerInTrigger = false;
-        foreach (var animator in _doorAnimators)
+        if (GameManager.Instance.GameInProgress)
         {
-            animator.SetTrigger("Open");
-            animator.ResetTrigger("Reset");
+            Inventory.Instance.RemoveItem(_requiredKeyData);
+            _hint.EnableInteractionKeyHint(false);
+            _doorUI.ToggleImage(false);
+            entryChecker.gameObject.SetActive(false);
+            _playerInTrigger = false;
+            foreach (var animator in _doorAnimators)
+            {
+                animator.SetTrigger("Open");
+                animator.ResetTrigger("Reset");
+            }
+            TouchUI.Instance.ToggleInterationButton(false);
+            if (_isFinalDoor)
+            {
+                GameManager.Instance.OnGameWin();
+            }
+            DoorOpen?.Invoke();
         }
-        TouchUI.Instance.ToggleInterationButton(false);
-        if (_isFinalDoor) {
-            GameManager.Instance.OnGameWin();
-        }
-        DoorOpen?.Invoke();
+        
     }
 
 }

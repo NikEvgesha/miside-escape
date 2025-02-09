@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public Action GameLose;
     public Action GameRestart;
     public Action Reset;
+
+    private bool _inProgress;
+    public bool GameInProgress { get { return _inProgress; } private set { } }
     public static GameManager Instance { get { return _instance; } private set { } }
 
     private void Awake()
@@ -30,15 +33,15 @@ public class GameManager : MonoBehaviour
         _roundTimeStart = Time.time;
         _startPlayerPosition = _player.transform.position;
         _startEnemyPosition = _enemy.transform.position;
+        _inProgress = true;
     }
 
     public void OnGameWin() {
         _roundTime = Time.time - _roundTimeStart;
         SaveManager.Instance.SaveScore((int)_roundTime);
-        _player.gameObject.SetActive(false);
-        _enemy.gameObject.SetActive(false);
         Reset?.Invoke();
         GameWin?.Invoke(_roundTime);
+        _inProgress = false;
     }
 
 
@@ -48,8 +51,7 @@ public class GameManager : MonoBehaviour
         {
             Reset?.Invoke();
             GameLose?.Invoke();
-            _player.gameObject.SetActive(false);
-            _enemy.gameObject.SetActive(false);
+            _inProgress = false;
         }
         
     }
