@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
         Reset?.Invoke();
         GameWin?.Invoke(_roundTime);
         _inProgress = false;
+        Destroy(_enemy.gameObject);
+        //Destroy(_player.GetComponent<MovementController>());
     }
 
 
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
             Reset?.Invoke();
             GameLose?.Invoke();
             _inProgress = false;
+            Destroy(_enemy.gameObject);
+            //Destroy(_player.GetComponent<MovementController>());
         }
         
     }

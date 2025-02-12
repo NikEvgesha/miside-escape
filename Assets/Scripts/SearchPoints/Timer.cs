@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private InteractionHint _interactionHint;
 
     public Action TimerFinish;
+    public Action TimerStop;
 
     private float _currentTime;
     private float _time;
@@ -35,6 +36,7 @@ public class Timer : MonoBehaviour
             _interactionHint.SetProgress(1);
             _inProgress = false;
             StopAllCoroutines();
+            TimerStop?.Invoke();
         }
     }
 

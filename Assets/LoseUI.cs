@@ -9,7 +9,7 @@ public class LoseUI : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.GameLose += OpenLosePanel;
-
+        
     }
 
     private void OpenLosePanel()

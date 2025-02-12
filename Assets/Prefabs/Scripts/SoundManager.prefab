@@ -71,6 +71,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _music: {fileID: 7681991552294134139}
+  _lose: {fileID: 8300000, guid: a07077d099a20d749a6f5ae18a6bcb85, type: 3}
+  _win: {fileID: 8300000, guid: 96c58c624856a6540961caed6f13bbac, type: 3}
 --- !u!1 &8094590549683703331
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,12 +114,12 @@ AudioSource:
   m_GameObject: {fileID: 8094590549683703331}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2105192508689730374, guid: fbef1b2f5463e75468973c4c2261b2e3, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 74e9ddeabc274c548bde2de5965aeae9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

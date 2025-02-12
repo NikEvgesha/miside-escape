@@ -8,6 +8,8 @@ public class SearchPoint : MonoBehaviour
     [SerializeField] private InteractionHint _hint;
     [SerializeField] private Timer _timer;
     [SerializeField] private float _searchTime; // Подумать, куда это пихнуть
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _takeKey;
 
     [SerializeField] private List<KeyItemType> _availableKeyTypes;
 
@@ -41,13 +43,15 @@ public class SearchPoint : MonoBehaviour
     {
         entryChecker.OnTrigger += OnPlayerEnter;
         _timer.TimerFinish += OnSearchTimerFinish;
-        
+        _timer.TimerStop += OnSearchTimerStop;
+
     }
 
     private void OnDisable()
     {
         entryChecker.OnTrigger -= OnPlayerEnter;
         _timer.TimerFinish -= OnSearchTimerFinish;
+        _timer.TimerStop -= OnSearchTimerStop;
         InputListener.Instance.InteractionKeyPressed -= OnInteractionKeyPressed;
     }
 
@@ -73,24 +77,37 @@ public class SearchPoint : MonoBehaviour
 
 
     private void StartSearch() {
+        _audioSource.Play();
         _hint.EnableInteractionKeyHint(false);
         _timer.StartTimer(_searchTime, entryChecker);
     }
 
 
     private void OnSearchTimerFinish() {
+        _audioSource.Stop();
         entryChecker.gameObject.SetActive(false);
         _hint.EnableInteractionKeyHint(false);
         TouchUI.Instance.ToggleInterationButton(false);
         _playerInTrigger = false;
         if (_item != null)
         {
+            PlayKeySound();
             Inventory.Instance.AddItem(_item);
         }
         else {
             _hint.ShowEmptyHint();
         }
         
+    }
+    private void OnSearchTimerStop()
+    {
+        _audioSource.Stop();
+    }
+    private void PlayKeySound()
+    {
+        _audioSource.loop = false;
+        _audioSource.clip = _takeKey;
+        _audioSource.Play();
     }
 
 

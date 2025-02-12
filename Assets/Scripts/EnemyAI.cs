@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using System;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent), typeof(ChainsawSoundController))]
 public class EnemyAI : MonoBehaviour
 {
 
@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string _animationWait = "Wait";
     [SerializeField] private string _animationFastRun = "FustRun";
     [SerializeField] private Door _door;
+    [SerializeField] private ChainsawSoundController chainsawSoundController;
 
     private static EnemyAI _instance;
     private EnemyState _enemyState = EnemyState.Idle;
@@ -34,6 +35,7 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        chainsawSoundController = GetComponent<ChainsawSoundController>();
     }
 
 
@@ -57,6 +59,7 @@ public class EnemyAI : MonoBehaviour
                 case EnemyState.Idle:
                     if (_isStart)
                     {
+                        chainsawSoundController.PlayIdleSound();
                         _enemyState = EnemyState.Run;
                         //_animator.SetTrigger(_animationRun);
                         _agent.isStopped = false; 
@@ -67,6 +70,7 @@ public class EnemyAI : MonoBehaviour
                     _timer += _aiFPS;
                     if (_timer >= _cooldown)
                     {
+                        chainsawSoundController.PlayStartSound();
                         _enemyState = EnemyState.Wait;
                         _animator.SetTrigger(_animationWait);
                         _agent.isStopped = true;
@@ -78,7 +82,8 @@ public class EnemyAI : MonoBehaviour
                     _timer += _aiFPS;
                     if (_timer >= _stopTime)
                     {
-                        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+                        chainsawSoundController.PlayFullPowerSound();
+                        _animator.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
                         _enemyState = EnemyState.FastRun;
                         _animator.SetTrigger(_animationFastRun);
                         _agent.isStopped = false;
@@ -91,6 +96,7 @@ public class EnemyAI : MonoBehaviour
                     _timer += _aiFPS;
                     if (_timer >= _runTime)
                     {
+                        chainsawSoundController.PlayIdleSound();
                         _enemyState = EnemyState.Run;
                         _animator.SetTrigger(_animationRun);
                         _agent.speed = _baseSpeed;

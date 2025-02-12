@@ -13,6 +13,8 @@ public class Door : MonoBehaviour
     [SerializeField] private Timer _timer;
     [SerializeField] private float _openTime;
     [SerializeField] private DoorUI _doorUI;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _open;
 
     [SerializeField] private ItemData _requiredKeyData;
     [SerializeField] private bool _isFinalDoor;
@@ -26,12 +28,14 @@ public class Door : MonoBehaviour
     {
         entryChecker.OnTrigger += OnPlayerEnter;
         _timer.TimerFinish += OnOpenTimerFinish;
+        _timer.TimerStop += OnSearchTimerStop;
     }
 
     private void OnDisable()
     {
         entryChecker.OnTrigger -= OnPlayerEnter;
         _timer.TimerFinish -= OnOpenTimerFinish;
+        _timer.TimerStop -= OnSearchTimerStop;
         InputListener.Instance.InteractionKeyPressed -= OnInteractionKeyPressed;
         GameManager.Instance.Reset -= ResetDoor;
     }
@@ -85,6 +89,7 @@ public class Door : MonoBehaviour
 
     private void StartOpen()
     {
+        _audioSource.Play();
         _hint.EnableInteractionKeyHint(false);
         _hint.EnableInteractionAreaHint(true);
         _timer.StartTimer(_openTime, entryChecker);
@@ -95,6 +100,7 @@ public class Door : MonoBehaviour
     {
         if (GameManager.Instance.GameInProgress)
         {
+            _audioSource.Stop();
             Inventory.Instance.RemoveItem(_requiredKeyData);
             _hint.EnableInteractionKeyHint(false);
             _doorUI.ToggleImage(false);
@@ -102,6 +108,7 @@ public class Door : MonoBehaviour
             _playerInTrigger = false;
             foreach (var animator in _doorAnimators)
             {
+                PlayOpenSound();
                 animator.SetTrigger("Open");
                 animator.ResetTrigger("Reset");
             }
@@ -112,7 +119,17 @@ public class Door : MonoBehaviour
             }
             DoorOpen?.Invoke();
         }
-        
+
+    }
+    private void OnSearchTimerStop()
+    {
+        _audioSource.Stop();
+    }
+    private void PlayOpenSound()
+    {
+        _audioSource.loop = false;
+        _audioSource.clip = _open;
+        _audioSource.Play();
     }
 
 }

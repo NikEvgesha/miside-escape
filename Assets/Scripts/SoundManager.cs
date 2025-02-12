@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup _mixer;
     [SerializeField] private AnimationCurve _curve;
     [SerializeField] private AudioSource _music;
+    [SerializeField] private AudioClip _lose;
+    [SerializeField] private AudioClip _win;
 
     private static SoundManager _instance;
     private bool _soundON;
@@ -62,7 +64,20 @@ public class SoundManager : MonoBehaviour
     }
     private void Start()
     {
+        GameManager.Instance.GameLose += GameLose;
+        GameManager.Instance.GameWin += GameWon;
         _music.Play();
     }
-
+    private void GameLose()
+    {
+        _music.loop = false;
+        _music.clip = _lose;
+        _music.Play();
+    }
+    private void GameWon(float none)
+    {
+        _music.loop = false;
+        _music.clip = _win;
+        _music.Play();
+    }
 }
