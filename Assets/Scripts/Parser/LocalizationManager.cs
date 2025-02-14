@@ -1,7 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
 using YG;
-using static Unity.VisualScripting.Member;
 
 public class LocalizationManager : MonoBehaviour
 {
@@ -21,6 +19,7 @@ public class LocalizationManager : MonoBehaviour
     private void OnEnable()
     {
         YandexGame.SwitchLangEvent += OnSwitchLanguage;
+        OnSwitchLanguage(YandexGame.lang);
     }
 
     private void OnDisable()
