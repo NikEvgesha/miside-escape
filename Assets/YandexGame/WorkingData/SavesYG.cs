@@ -19,7 +19,7 @@ namespace YG
         public bool[] openLevels = new bool[3];
 
         // Ваши сохранения
-        public int[] scores;
+        public float[] scores;
 
         // ...
 

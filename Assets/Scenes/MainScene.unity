@@ -4254,7 +4254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8793661349039529442, guid: f816af9350b4e324397fa1d206831938, type: 3}
       propertyPath: _removeSaveOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9069071642682045245, guid: f816af9350b4e324397fa1d206831938, type: 3}
       propertyPath: m_LocalPosition.x

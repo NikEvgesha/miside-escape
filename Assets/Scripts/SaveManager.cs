@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using YG;
 
@@ -12,7 +13,7 @@ public class SaveManager : MonoBehaviour
      */
     [SerializeField] private bool _removeSaveOnStart;
     private static SaveManager _instance;
-    private List<long> _scores = new List<long>();
+    private List<float> _scores = new List<float>();
     private int _topScoreCounts = 5;
 
     public int TopScoreCounts { get { return _topScoreCounts; } }
@@ -47,21 +48,25 @@ public class SaveManager : MonoBehaviour
        
         if (YandexGame.savesData.scores == null)
         {
-            YandexGame.savesData.scores = new int[_topScoreCounts];
+            YandexGame.savesData.scores = new float[_topScoreCounts];
         }
-        long l_score = (long)score * 1000;
-        _scores.Add(l_score);
+
+        //long l_score = (long)score * 1000;
+        _scores.Add(score);
         _scores.Sort();
         if (_scores.Count > _topScoreCounts)
             _scores.RemoveAt(_scores.Count - 1);
         int i = 0;
-        foreach (int el in _scores) {
+        foreach (float el in _scores) {
             YandexGame.savesData.scores[i] = el;
+            Debug.Log("YG save: "+YandexGame.savesData.scores[i]);
             i++;
         }
-        if (score == _scores[0]) {
-            YandexGame.NewLeaderboardScores("allTime", l_score);
-            YandexGame.NewLeaderboardScores("monthTime", l_score);
+        //Debug.Log("score: " + score);
+        if (Mathf.Abs(score - _scores[0]) <= 1e-06) {
+            Debug.Log("score to LB: " + score);
+            YandexGame.NewLBScoreTimeConvert("allTime", score);
+            YandexGame.NewLBScoreTimeConvert("monthTime", score);
         }
         
         YandexGame.SaveProgress();
@@ -70,7 +75,7 @@ public class SaveManager : MonoBehaviour
     public void LoadScore() {
         if (YandexGame.savesData.scores != null)
         {
-            foreach (int el in YandexGame.savesData.scores)
+            foreach (float el in YandexGame.savesData.scores)
             {
                 if (el != 0)
                 {
@@ -82,7 +87,7 @@ public class SaveManager : MonoBehaviour
             
     }
 
-    public List<long> GetPlayerScores()
+    public List<float> GetPlayerScores()
     {
         return _scores;
     }

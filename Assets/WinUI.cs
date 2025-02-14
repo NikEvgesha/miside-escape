@@ -12,6 +12,7 @@ public class WinUI : MonoBehaviour
     //[SerializeField] private ScoreUISlot _scorePrefab;
     [SerializeField] private LBPlayerDataYG _lbSlotPrefab;
     [SerializeField] private LeaderboardYG _lbGlobal;
+    [SerializeField] private LeaderboardYG _lbMonth;
     [SerializeField] private Transform _playerScoreParent;
 
 
@@ -24,8 +25,8 @@ public class WinUI : MonoBehaviour
         _winPanel.SetActive(true);
         SetTime(time);
         SetScores();
-        YandexGame.GetLeaderboard("allTime", 6, 5, 1, "small");
-        YandexGame.GetLeaderboard("monthTime", 6, 5, 1, "small");
+        _lbGlobal.UpdateLB();
+        _lbMonth.UpdateLB();
     }
 
     private void SetTime(float time) {
@@ -42,17 +43,18 @@ public class WinUI : MonoBehaviour
     }
 
     public void SetScores() {
-        List<long> scores = SaveManager.Instance.GetPlayerScores();
+        List<float> scores = SaveManager.Instance.GetPlayerScores();
             while (_playerScoreParent.childCount > 0)
             {
                 DestroyImmediate(_playerScoreParent.GetChild(0).gameObject);
             }
         int i = 1;
         foreach (int score in scores) {
+            Debug.Log("score: " + score);
             var slot = Instantiate(_lbSlotPrefab, _playerScoreParent);
             slot.data.thisPlayer = true;
-            var timeSpan = TimeSpan.FromMilliseconds(score);
-            slot.data.score = string.Format("{0:00}:{1:00}.{2:000}", (int)timeSpan.TotalMinutes, timeSpan.Seconds, timeSpan.Milliseconds);
+            var timeSpan = TimeSpan.FromMilliseconds(score*1000);
+            slot.data.score = string.Format("{0:D2}:{1:D2}.{2:D2}", (int)timeSpan.TotalMinutes, timeSpan.Seconds, timeSpan.Milliseconds);
             //slot.data.score = string.Format("{0:00}:{1:00}", score/60, score%60);
             slot.data.photoSprite = _lbGlobal.isHiddenPlayerPhoto;
             slot.data.rank = i.ToString();
