@@ -15,18 +15,26 @@ public class WinUI : MonoBehaviour
     [SerializeField] private LeaderboardYG _lbMonth;
     [SerializeField] private Transform _playerScoreParent;
 
+/*    private void OnEnable()
+    {
+        _lbGlobal.UpdateLB();
+        _lbMonth.UpdateLB();
+    }*/
 
     private void Start()
     {
         GameManager.Instance.GameWin += OpenWinPanel;
+       
+        _winPanel.SetActive(false);
     }
 
     private void OpenWinPanel(float time) {
         _winPanel.SetActive(true);
-        SetTime(time);
-        SetScores();
         _lbGlobal.UpdateLB();
         _lbMonth.UpdateLB();
+        SetTime(time);
+        SetScores();
+        
     }
 
     private void SetTime(float time) {
@@ -35,7 +43,6 @@ public class WinUI : MonoBehaviour
     }
 
     public void OnRestartButtonPressed() {
-        Debug.Log("Restart");
         GameManager.Instance.OnGameRestart();
     }
 
