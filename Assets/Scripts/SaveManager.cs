@@ -57,12 +57,12 @@ public class SaveManager : MonoBehaviour
         int i = 0;
         foreach (float el in _scores) {
             YandexGame.savesData.scores[i] = el;
-            Debug.Log("YG save: "+YandexGame.savesData.scores[i]);
+            //Debug.Log("YG save: "+YandexGame.savesData.scores[i]);
             i++;
         }
         //Debug.Log("score: " + score);
         if (Mathf.Abs(score - _scores[0]) <= 1e-06) {
-            Debug.Log("score to LB: " + score);
+            //Debug.Log("score to LB: " + score);
             YandexGame.NewLBScoreTimeConvert("allTime", score);
             YandexGame.NewLBScoreTimeConvert("monthTime", score);
         }
