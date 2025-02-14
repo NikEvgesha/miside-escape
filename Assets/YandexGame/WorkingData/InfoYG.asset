@@ -43,7 +43,7 @@ MonoBehaviour:
   leaderboardEnable: 1
   saveScoreAnonymousPlayers: 1
   leaderboardSimulation:
-  - technoName: advanced
+  - technoName: allTime
     entries: 'Test LeaderBoard
 
       Name: advanced
@@ -55,48 +55,43 @@ MonoBehaviour:
 
       3. Tanya: 23'
     isDefault: 0
-    isInvertSortOrder: 0
+    isInvertSortOrder: 1
     decimalOffset: 0
     type: numeric
     players:
     - rank: 1
       name: anonymous
-      score: 10
+      score: 120000
       photo: https://games-sdk.yandex.ru/games/api/sdk/v1/player/avatar/0/islands-retina-small
       uniqueID: 123
     - rank: 2
       name: Ivan
-      score: 15
+      score: 59000
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
     - rank: 3
       name: Tanya
-      score: 23
+      score: 23000
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 456
     - rank: 4
       name: Player4
-      score: 30
+      score: 300000
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
     - rank: 5
       name: Player this
-      score: 40
+      score: 40000
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 000
-    - rank: 6
-      name: Player6
-      score: 50
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
     thisPlayer:
       rank: 2
-      score: 10
-  - technoName: simple
+      score: 62000
+  - technoName: monthTime
     entries: "Test LeaderBoard\nName: simple\n1. \u0441\u043A\u0440\u044B\u0442:
       10\n2. Max: 15\n3. Maria: 23"
     isDefault: 0
-    isInvertSortOrder: 0
+    isInvertSortOrder: 1
     decimalOffset: 0
     type: numeric
     players:
@@ -131,8 +126,8 @@ MonoBehaviour:
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
     thisPlayer:
-      rank: 0
-      score: 0
+      rank: 10
+      score: 130
   - technoName: time
     entries: 'Test LeaderBoard
 

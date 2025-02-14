@@ -38,12 +38,11 @@ public class GameManager : MonoBehaviour
 
     public void OnGameWin() {
         _roundTime = Time.time - _roundTimeStart;
-        SaveManager.Instance.SaveScore((int)_roundTime);
+        SaveManager.Instance.SaveScore(_roundTime);
         Reset?.Invoke();
         GameWin?.Invoke(_roundTime);
         _inProgress = false;
         Destroy(_enemy.gameObject);
-        //Destroy(_player.GetComponent<MovementController>());
     }
 
 
@@ -55,7 +54,6 @@ public class GameManager : MonoBehaviour
             GameLose?.Invoke();
             _inProgress = false;
             Destroy(_enemy.gameObject);
-            //Destroy(_player.GetComponent<MovementController>());
         }
         
     }

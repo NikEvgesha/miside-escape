@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
      */
     [SerializeField] private bool _removeSaveOnStart;
     private static SaveManager _instance;
-    private List<int> _scores = new List<int>();
+    private List<long> _scores = new List<long>();
     private int _topScoreCounts = 5;
 
     public int TopScoreCounts { get { return _topScoreCounts; } }
@@ -43,13 +43,14 @@ public class SaveManager : MonoBehaviour
         
     }
 
-    public void SaveScore(int score) {
+    public void SaveScore(float score) {
        
         if (YandexGame.savesData.scores == null)
         {
             YandexGame.savesData.scores = new int[_topScoreCounts];
         }
-        _scores.Add(score);
+        long l_score = (long)score * 1000;
+        _scores.Add(l_score);
         _scores.Sort();
         if (_scores.Count > _topScoreCounts)
             _scores.RemoveAt(_scores.Count - 1);
@@ -58,8 +59,11 @@ public class SaveManager : MonoBehaviour
             YandexGame.savesData.scores[i] = el;
             i++;
         }
-
-        YandexGame.NewLeaderboardScores(YandexGame.playerName, score);
+        if (score == _scores[0]) {
+            YandexGame.NewLeaderboardScores("allTime", l_score);
+            YandexGame.NewLeaderboardScores("monthTime", l_score);
+        }
+        
         YandexGame.SaveProgress();
     }
 
@@ -78,7 +82,7 @@ public class SaveManager : MonoBehaviour
             
     }
 
-    public List<int> GetPlayerScores()
+    public List<long> GetPlayerScores()
     {
         return _scores;
     }

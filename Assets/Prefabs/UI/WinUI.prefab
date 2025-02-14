@@ -191,8 +191,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116.66664, y: -51.0607}
-  m_SizeDelta: {x: 233.33328, y: 102.1214}
+  m_AnchoredPosition: {x: 116.66667, y: -51.0607}
+  m_SizeDelta: {x: 233.33334, y: 102.1214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8108551651754973046
 CanvasRenderer:
@@ -348,8 +348,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.99994, y: -51.0607}
-  m_SizeDelta: {x: 233.33328, y: 102.1214}
+  m_AnchoredPosition: {x: 350, y: -51.0607}
+  m_SizeDelta: {x: 233.33334, y: 102.1214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1326474930558205060
 CanvasRenderer:
@@ -505,8 +505,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 583.3332, y: -51.0607}
-  m_SizeDelta: {x: 233.33328, y: 102.1214}
+  m_AnchoredPosition: {x: 583.3334, y: -51.0607}
+  m_SizeDelta: {x: 233.33334, y: 102.1214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6275483533512137452
 CanvasRenderer:
@@ -2004,6 +2004,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeaderBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 6895850703800868392, guid: 0d290516f46b5ae4691c1fc80894589d, type: 3}
+      propertyPath: nameLB
+      value: monthTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895850703800868392, guid: 0d290516f46b5ae4691c1fc80894589d, type: 3}
+      propertyPath: timeTypeConvert
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2113,6 +2121,10 @@ PrefabInstance:
     - target: {fileID: 5617650574114587148, guid: 0d290516f46b5ae4691c1fc80894589d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -2.4699707
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895850703800868392, guid: 0d290516f46b5ae4691c1fc80894589d, type: 3}
+      propertyPath: timeTypeConvert
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
