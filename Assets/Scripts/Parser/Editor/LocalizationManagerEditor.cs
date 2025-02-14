@@ -1,5 +1,6 @@
 using UnityEditor;
 using System.Collections.Generic;
+using YG;
 
 [CustomEditor(typeof(LocalizationManager))]
 public class LocalizationManagerEditor : Editor
@@ -20,7 +21,8 @@ public class LocalizationManagerEditor : Editor
 
             if (langIndex >= 0 && langIndex < languages.Count)
             {
-                manager.ChangeLanguage(languages[langIndex]);
+                //manager.ChangeLanguage(languages[langIndex]);
+                YandexGame.SwitchLanguage(char.ToLower(languages[langIndex][0]) + languages[langIndex].Substring(1));
             }
         }
 

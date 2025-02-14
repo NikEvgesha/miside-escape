@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class LanguageButton : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class LanguageButton : MonoBehaviour
     {
         if (LocalizationManager.Instance != null)
         {
-            LocalizationManager.Instance.ChangeLanguage(language);
+            //LocalizationManager.Instance.ChangeLanguage(language);
+            YandexGame.SwitchLanguage(char.ToLower(language[0]) + language.Substring(1));
             Debug.Log("Переключаем язык на: " + language);
         }
         else

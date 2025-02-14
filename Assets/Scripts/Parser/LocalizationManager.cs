@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using YG;
+using static Unity.VisualScripting.Member;
 
 public class LocalizationManager : MonoBehaviour
 {
@@ -14,6 +16,16 @@ public class LocalizationManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        YandexGame.SwitchLangEvent += OnSwitchLanguage;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.SwitchLangEvent -= OnSwitchLanguage;
     }
 
     public void ChangeLanguage(string newLanguage)
@@ -34,5 +46,10 @@ public class LocalizationManager : MonoBehaviour
         {
             currentLanguage = localizationData.Languages.Count > 0 ? localizationData.Languages[0] : "";
         }
+    }
+
+    private void OnSwitchLanguage(string langCode)
+    {
+        ChangeLanguage(char.ToUpper(langCode[0]) + langCode.Substring(1));
     }
 }

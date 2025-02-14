@@ -9210,7 +9210,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0438\u043B\u0438"
+  m_Text: --------
 --- !u!222 &476728025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31704,6 +31704,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4426750177853194687, guid: b3e7ff47bb99713478bedce7af303aa4, type: 3}
+      propertyPath: decimalSize
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4436696705764316362, guid: b3e7ff47bb99713478bedce7af303aa4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -31855,6 +31859,10 @@ PrefabInstance:
     - target: {fileID: 8047442485960007184, guid: b3e7ff47bb99713478bedce7af303aa4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846577248215340684, guid: b3e7ff47bb99713478bedce7af303aa4, type: 3}
+      propertyPath: decimalSize
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

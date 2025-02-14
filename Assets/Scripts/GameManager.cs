@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,12 +29,33 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+
+    private void OnEnable()
+    {
+        YandexGame.onVisibilityWindowGame += OnVisibilityWindowGame;
+        YandexGame.SwitchLangEvent += OnSwitchLanguage;
+    }
+    private void OnDisable()
+    {
+        YandexGame.onVisibilityWindowGame -= OnVisibilityWindowGame;
+        YandexGame.SwitchLangEvent += OnSwitchLanguage;
+    }
+
     private void Start()
     {
         _roundTimeStart = Time.time;
         _startPlayerPosition = _player.transform.position;
         _startEnemyPosition = _enemy.transform.position;
         _inProgress = true;
+    }
+
+    private void OnSwitchLanguage(string langCode) {
+    
+    }
+
+    private void OnVisibilityWindowGame(bool _isVisible)
+    {
+        Time.timeScale = _isVisible ? 1f : 0f;
     }
 
     public void OnGameWin() {
