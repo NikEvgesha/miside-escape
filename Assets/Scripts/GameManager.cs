@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private void OnVisibilityWindowGame(bool _isVisible)
     {
         Time.timeScale = _isVisible ? 1f : 0f;
-        AudioListener.pause = _isVisible;
+        AudioListener.pause = !_isVisible;
     }
     public void OnGameWin() {
         _roundTime = Time.time - _roundTimeStart;
