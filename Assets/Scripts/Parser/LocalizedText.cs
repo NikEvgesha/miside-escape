@@ -20,9 +20,11 @@ public class LocalizedText : MonoBehaviour
     {
         uiText = GetComponent<Text>();
         tmpText = GetComponent<TextMeshProUGUI>();
-        UpdateText();
     }
-
+    private void OnEnable()
+    {
+        SetLanguage(LocalizationManager.Instance.CurrentLanguage);
+    }
     public void SetLanguage(string language)
     {
         currentLanguage = language;
