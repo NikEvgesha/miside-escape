@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         _startPlayerPosition = _player.transform.position;
         _startEnemyPosition = _enemy.transform.position;
         _inProgress = true;
+        YandexGame.GameplayStart();
     }
 
     private void OnSwitchLanguage(string langCode) {
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         GameWin?.Invoke(_roundTime);
         _inProgress = false;
         Destroy(_enemy.gameObject);
+        YandexGame.GameplayStop();
     }
 
 
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
             GameLose?.Invoke();
             _inProgress = false;
             Destroy(_enemy.gameObject);
+            YandexGame.GameplayStop();
         }
         
     }
