@@ -124,6 +124,8 @@ MonoBehaviour:
   _startSound: {fileID: 8300000, guid: 827f411a5bdd83142b3c3be9e40750c1, type: 3}
   _fullPowerSound: {fileID: 8300000, guid: c3f508b59b705544ba91b5e898064f62, type: 3}
   _idleSound: {fileID: 8300000, guid: 4a3b5331d3e3f904582d07749ad0adc5, type: 3}
+  _distanceWait: 40
+  _distanceNormal: 20
 --- !u!82 &265424401134066481
 AudioSource:
   m_ObjectHideFlags: 0
@@ -136,7 +138,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1894907514292911975, guid: fbef1b2f5463e75468973c4c2261b2e3, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
