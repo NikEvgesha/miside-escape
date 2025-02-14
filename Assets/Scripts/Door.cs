@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 
 public class Door : MonoBehaviour
@@ -111,6 +112,7 @@ public class Door : MonoBehaviour
                 PlayOpenSound();
                 animator.SetTrigger("Open");
                 animator.ResetTrigger("Reset");
+                YandexMetrica.Send("DoorOpen");
             }
             TouchUI.Instance.ToggleInterationButton(false);
             if (_isFinalDoor)

@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         GameWin?.Invoke(_roundTime);
         _inProgress = false;
         Destroy(_enemy.gameObject);
+        YandexMetrica.Send("GameWin");
         YandexGame.GameplayStop();
     }
     public void OnGameLose()
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
             GameLose?.Invoke();
             _inProgress = false;
             Destroy(_enemy.gameObject);
+            YandexMetrica.Send("GameLose");
             YandexGame.GameplayStop();
         }
         
