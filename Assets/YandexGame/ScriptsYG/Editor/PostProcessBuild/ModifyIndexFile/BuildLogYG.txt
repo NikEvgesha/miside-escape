@@ -1,2 +1,2 @@
-Build path: E:/GitFork/Bilds/MiSide/MiSide_0010_Lang
-Build number: 6
+Build path: E:/GitFork/Bilds/MiSide/MiSide_0011_Pause
+Build number: 7
