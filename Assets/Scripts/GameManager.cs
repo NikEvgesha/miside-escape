@@ -42,8 +42,9 @@ public class GameManager : MonoBehaviour
     }
     private void OnVisibilityWindowGame(bool _isVisible)
     {
+        Debug.Log("Visible 2: " + _isVisible);
         Time.timeScale = _isVisible ? 1f : 0f;
-        AudioListener.pause = !_isVisible;
+        AudioListener.pause = !_isVisible;  
     }
     public void OnGameWin() {
         _roundTime = Time.time - _roundTimeStart;

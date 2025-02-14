@@ -64,6 +64,7 @@ namespace YG
             if (singleton)
                 SceneManager.sceneLoaded += OnSceneLoaded;
 #if UNITY_EDITOR
+            Debug.Log("focus sub");
             Application.focusChanged += OnVisibilityGameWindow;
 #endif
         }
@@ -418,6 +419,7 @@ namespace YG
         {
             if (visible == "true")
             {
+                Debug.Log("Visible true 1");
                 visibilityWindowGame = true;
                 GameplayStart(true);
 
@@ -426,6 +428,7 @@ namespace YG
             }
             else
             {
+                Debug.Log("Visible false 1");
                 onVisibilityWindowGame?.Invoke(false);
                 onHideWindowGame?.Invoke();
 
