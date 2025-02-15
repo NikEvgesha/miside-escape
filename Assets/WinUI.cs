@@ -24,14 +24,17 @@ public class WinUI : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.GameWin += OpenWinPanel;
-       
-        _winPanel.SetActive(false);
+        //_winPanel.transform.position = Vector3.left*10000;
+        //_winPanel.SetActive(false);
     }
 
-    private void OpenWinPanel(float time) {
+    private void OpenWinPanel(float time)
+    {
+        //_winPanel.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        //_winPanel.transform.position = Vector3.zero;
         _winPanel.SetActive(true);
-        _lbGlobal.UpdateLB();
-        _lbMonth.UpdateLB();
+        //_lbGlobal.UpdateLB();
+        //_lbMonth.UpdateLB();
         SetTime(time);
         SetScores();
         

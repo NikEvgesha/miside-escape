@@ -63,7 +63,7 @@ MonoBehaviour:
   maxQuantityPlayers: 5
   quantityTop: 5
   quantityAround: 1
-  updateLBMethod: 2
+  updateLBMethod: 1
   entriesText: {fileID: 0}
   advanced: 1
   rootSpawnPlayersData: {fileID: 5617650574114587148}

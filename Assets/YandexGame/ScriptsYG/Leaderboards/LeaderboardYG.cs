@@ -79,13 +79,13 @@ namespace YG
                 UpdateLB();
             }
         }
-
+        private bool _isOne = true;
         private void OnEnable()
         {
             YandexGame.onGetLeaderboard += OnUpdateLB;
-
-            if (updateLBMethod == UpdateLBMethod.OnEnable)
+            if (updateLBMethod == UpdateLBMethod.OnEnable && _isOne)
             {
+                _isOne = false;
                 UpdateLB();
             }
         }
