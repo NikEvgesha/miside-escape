@@ -114,4 +114,12 @@ public class EnemyAI : MonoBehaviour
         _isStart = true;
         _agent.SetDestination(_player.position);
     }
+    public void Pause()
+    {
+        _isStart = false;
+        _enemyState = EnemyState.Idle;
+        _animator.SetTrigger(_animationRun);
+        _animator.SetTrigger(_animationWait);
+        chainsawSoundController.StopSound();
+    }
 }

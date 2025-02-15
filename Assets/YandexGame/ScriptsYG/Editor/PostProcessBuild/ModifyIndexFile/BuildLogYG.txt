@@ -1,2 +1,2 @@
-Build path: E:/GitFork/Bilds/MiSide/MiSide_0013_RelizKandidat
-Build number: 9
+Build path: E:/GitFork/Bilds/MiSide/MiSide_0016_r_Pause
+Build number: 12

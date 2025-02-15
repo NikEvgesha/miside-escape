@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     }
     private void OnVisibilityWindowGame(bool _isVisible)
     {
-        Debug.Log("Visible 2: " + _isVisible);
         Time.timeScale = _isVisible ? 1f : 0f;
         AudioListener.pause = !_isVisible;  
     }
@@ -52,7 +51,8 @@ public class GameManager : MonoBehaviour
         Reset?.Invoke();
         GameWin?.Invoke(_roundTime);
         _inProgress = false;
-        Destroy(_enemy.gameObject);
+        //Destroy(_enemy.gameObject);
+        _enemy.Pause();
         YandexMetrica.Send("GameWin");
         YandexGame.GameplayStop();
     }
@@ -63,7 +63,8 @@ public class GameManager : MonoBehaviour
             Reset?.Invoke();
             GameLose?.Invoke();
             _inProgress = false;
-            Destroy(_enemy.gameObject);
+            //Destroy(_enemy.gameObject);
+            _enemy.Pause();
             YandexMetrica.Send("GameLose");
             YandexGame.GameplayStop();
         }

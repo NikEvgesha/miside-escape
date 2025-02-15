@@ -63,18 +63,18 @@ namespace YG
         {
             if (singleton)
                 SceneManager.sceneLoaded += OnSceneLoaded;
-#if UNITY_EDITOR
+
             Debug.Log("focus sub");
             Application.focusChanged += OnVisibilityGameWindow;
-#endif
+
         }
         private void OnDisable()
         {
             if (singleton)
                 SceneManager.sceneLoaded -= OnSceneLoaded;
-#if UNITY_EDITOR
+
             Application.focusChanged -= OnVisibilityGameWindow;
-#endif
+
         }
 
         private void Awake()
@@ -419,7 +419,6 @@ namespace YG
         {
             if (visible == "true")
             {
-                Debug.Log("Visible true 1");
                 visibilityWindowGame = true;
                 GameplayStart(true);
 
@@ -428,7 +427,6 @@ namespace YG
             }
             else
             {
-                Debug.Log("Visible false 1");
                 onVisibilityWindowGame?.Invoke(false);
                 onHideWindowGame?.Invoke();
 
