@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
             YandexMetrica.Send("GameLose");
             YandexGame.GameplayStop();
         }
-        
     }
     public void OnGameRestart()
     {

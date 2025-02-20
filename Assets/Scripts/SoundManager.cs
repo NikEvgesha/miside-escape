@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using YG;
 
 public class SoundManager : MonoBehaviour
 {
@@ -61,12 +62,24 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (YandexGame.nowAdsShow)
+        {
+            YandexGame.CloseVideoEvent += StartPlayMusic;
+        }
+        else
+        {
+            _music.Play();
+        }
     }
     private void Start()
     {
         GameManager.Instance.GameLose += GameLose;
         GameManager.Instance.GameWin += GameWon;
+    }
+    private void StartPlayMusic()
+    {
         _music.Play();
+        YandexGame.CloseVideoEvent -= StartPlayMusic;
     }
     private void GameLose()
     {
