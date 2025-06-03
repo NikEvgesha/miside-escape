@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Action GameLose;
     public Action GameRestart;
     public Action Reset;
+    public Action GameStart;
 
     private bool _inProgress;
     public bool GameInProgress { get { return _inProgress; } private set { } }
@@ -28,33 +28,34 @@ public class GameManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        YandexGame.onVisibilityWindowGame += OnVisibilityWindowGame;
+        //PauseManager.Instance..onVisibilityWindowGame += OnVisibilityWindowGame;
     }
     private void OnDisable()
     {
-        YandexGame.onVisibilityWindowGame -= OnVisibilityWindowGame;
+        //YandexGame.onVisibilityWindowGame -= OnVisibilityWindowGame;
     }
     private void Start()
     {
         _roundTimeStart = Time.time;
         _inProgress = true;
-        YandexGame.GameplayStart();
+        //YandexGame.GameplayStart();
+        GameStart?.Invoke();
     }
-    private void OnVisibilityWindowGame(bool _isVisible)
+/*    private void OnVisibilityWindowGame(bool _isVisible)
     {
         Time.timeScale = _isVisible ? 1f : 0f;
         AudioListener.pause = !_isVisible;  
-    }
+    }*/
     public void OnGameWin() {
         _roundTime = Time.time - _roundTimeStart;
-        SaveManager.Instance.SaveScore(_roundTime);
+        SaveManagerOld.Instance.SaveScore(_roundTime);
         Reset?.Invoke();
         GameWin?.Invoke(_roundTime);
         _inProgress = false;
         //Destroy(_enemy.gameObject);
         _enemy.Pause();
-        YandexMetrica.Send("GameWin");
-        YandexGame.GameplayStop();
+        AnalyticsManager.Instance.LogEvent("GameWin");
+        //YandexGame.GameplayStop();
     }
     public void OnGameLose()
     {
@@ -65,8 +66,8 @@ public class GameManager : MonoBehaviour
             _inProgress = false;
             //Destroy(_enemy.gameObject);
             _enemy.Pause();
-            YandexMetrica.Send("GameLose");
-            YandexGame.GameplayStop();
+            AnalyticsManager.Instance.LogEvent("GameLose");
+            //YandexGame.GameplayStop();
         }
     }
     public void OnGameRestart()

@@ -2,17 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using YG;
-using YG.Utils.LB;
 
 public class WinUI : MonoBehaviour
 {
     [SerializeField] private Text _roundTime;
     [SerializeField] private GameObject _winPanel;
     //[SerializeField] private ScoreUISlot _scorePrefab;
-    [SerializeField] private LBPlayerDataYG _lbSlotPrefab;
+/*    [SerializeField] private LBPlayerDataYG _lbSlotPrefab;
     [SerializeField] private LeaderboardYG _lbGlobal;
-    [SerializeField] private LeaderboardYG _lbMonth;
+    [SerializeField] private LeaderboardYG _lbMonth;*/
     [SerializeField] private Transform _playerScoreParent;
 
 /*    private void OnEnable()
@@ -50,13 +48,13 @@ public class WinUI : MonoBehaviour
     }
 
     public void SetScores() {
-        List<float> scores = SaveManager.Instance.GetPlayerScores();
+        List<float> scores = SaveManagerOld.Instance.GetPlayerScores();
             while (_playerScoreParent.childCount > 0)
             {
                 DestroyImmediate(_playerScoreParent.GetChild(0).gameObject);
             }
         int i = 1;
-        foreach (float score in scores) {
+/*        foreach (float score in scores) {
             var slot = Instantiate(_lbSlotPrefab, _playerScoreParent);
             slot.data.thisPlayer = true;
             var timeSpan = TimeSpan.FromMilliseconds(score*1000);
@@ -65,6 +63,6 @@ public class WinUI : MonoBehaviour
             slot.data.rank = i.ToString();
             i++;
             slot.UpdateEntries();
-        }
+        }*/
     }
 }

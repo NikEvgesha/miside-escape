@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using YG;
 
 public class SearchPoint : MonoBehaviour
 {
@@ -94,7 +93,7 @@ public class SearchPoint : MonoBehaviour
         {
             PlayKeySound();
             Inventory.Instance.AddItem(_item);
-            YandexMetrica.Send("KeyCollect");
+            AnalyticsManager.Instance.LogEvent("KeyCollect");
         }
         else {
             _hint.ShowEmptyHint();

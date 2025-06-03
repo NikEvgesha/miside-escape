@@ -72,3 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .vsconfig
+credentials.json
+Assets/Resources/credentials.json
+Assets/Resources/credentials.json.meta

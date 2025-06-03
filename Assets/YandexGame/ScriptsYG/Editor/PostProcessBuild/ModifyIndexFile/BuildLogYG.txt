@@ -1,2 +1,0 @@
-Build path: E:/GitFork/Bilds/MiSide/MiSide_0024_r_Fix
-Build number: 21
